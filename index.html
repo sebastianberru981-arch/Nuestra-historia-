@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuestra Historia - Cristina</title>
+
+<style>
+body {
+  margin:0;
+  font-family: 'Georgia', serif;
+  background-color:#0b0b0f;
+  color:white;
+  text-align:center;
+  overflow-x:hidden;
+}
+
+section {
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding:30px;
+  opacity:0;
+  transform:translateY(40px);
+  transition:1.5s;
+}
+
+section.show {
+  opacity:1;
+  transform:translateY(0);
+}
+
+img {
+  max-width:90%;
+  border-radius:15px;
+  box-shadow:0 0 40px rgba(255,255,255,0.2);
+}
+
+h1, h2 {
+  margin:20px 0;
+}
+
+button {
+  padding:12px 25px;
+  background:transparent;
+  border:1px solid white;
+  color:white;
+  border-radius:30px;
+  cursor:pointer;
+  transition:0.3s;
+  margin-top:20px;
+}
+
+button:hover {
+  background:white;
+  color:black;
+}
+
+#countdown {
+  font-size:28px;
+  margin-top:20px;
+}
+
+.fade-text {
+  max-width:700px;
+  line-height:1.7;
+  font-size:18px;
+}
+
+footer {
+  padding:40px;
+}
+</style>
+</head>
+
+<body>
+
+<section class="show">
+  <img src="foto1.jpg">
+  <h1>Nuestra historia no empezó hoy…</h1>
+  <h2>Empezó hace años.</h2>
+  <button onclick="window.scrollTo({top:window.innerHeight,behavior:'smooth'})">
+  Descubre lo que siento ✨
+  </button>
+</section>
+
+<section>
+  <h2>Nos conocimos cuando éramos niños.</h2>
+  <p class="fade-text">
+  Fuiste mi primera novia. Mi primer beso.  
+  La primera vez que sentí algo real.  
+  La vida nos separó… pero nunca borró lo que empezó.
+  </p>
+</section>
+
+<section>
+  <img src="foto2.jpg">
+  <h2>Y la vida nos volvió a unir.</h2>
+  <p class="fade-text">
+  Esta vez más grandes.  
+  Más conscientes.  
+  Y con Mathias en tu vida…  
+  Un pequeño que, aunque no es mío, quiero con el corazón.
+  </p>
+</section>
+
+<section>
+  <h2>Amor…</h2>
+  <p class="fade-text">
+La neta no soy mucho de escribir cosas así, pero contigo me nace.  
+Que aunque estemos lejos, te siento cerquita de mi corazón.  
+Nunca pensé que una relación a distancia fuera a significar tanto para mí, pero llegaste tú… con tu risa, con tu manera tan fuerte y tan linda de ser mamá, con ese corazón enorme que tienes. Y cambiaste todo.  
+
+Me enseñaste que el amor no siempre es fácil, pero cuando es real, vale cada segundo de espera, cada llamada en la noche, cada mensaje de “ya llegaste?” 🥹  
+
+Admiro mucho la mujer que eres. No cualquiera saca adelante a su hijo con esa fuerza, con esa dulzura, con ese amor tan puro.  
+
+A veces quisiera abrazarte cuando tienes días pesados, darte un beso en la frente y decirte que todo va a estar bien.  
+
+Pero mientras eso pasa, quiero que sepas que aquí estoy.  
+Que no me voy.  
+Que te elijo a ti, con todo y todo.
+  </p>
+
+  <button onclick="window.open('https://www.youtube.com/results?search_query=eres+cafe+tacuba')">
+  Toca aquí y escucha nuestra canción 🎧
+  </button>
+</section>
+
+<section>
+  <h2>Cada segundo es uno menos para volver a abrazarte.</h2>
+  <div id="countdown"></div>
+</section>
+
+<section>
+  <h2>¿Sigues construyendo esto conmigo? 💌</h2>
+  <button onclick="finalMessage()">Sí, seguimos 💞</button>
+</section>
+
+<footer id="final"></footer>
+
+<script>
+const sections = document.querySelectorAll("section");
+window.addEventListener("scroll",()=>{
+  sections.forEach(sec=>{
+    const position = sec.getBoundingClientRect().top;
+    if(position < window.innerHeight - 100){
+      sec.classList.add("show");
+    }
+  });
+});
+
+// Cuenta regresiva 2 años desde hoy
+const now = new Date();
+const target = new Date();
+target.setFullYear(now.getFullYear() + 2);
+
+function updateCountdown(){
+  const diff = target - new Date();
+  const days = Math.floor(diff/(1000*60*60*24));
+  const hours = Math.floor((diff/(1000*60*60))%24);
+  const minutes = Math.floor((diff/1000/60)%60);
+  const seconds = Math.floor((diff/1000)%60);
+  document.getElementById("countdown").innerHTML =
+    days+" días "+hours+"h "+minutes+"m "+seconds+"s";
+}
+
+setInterval(updateCountdown,1000);
+
+function finalMessage(){
+  document.getElementById("final").innerHTML =
+  "<h2>Yo ya te elegí, Cristina.</h2><h3>Con amor, Sebastián ❤️</h3>";
+}
+</script>
+
+</body>
+</html>
